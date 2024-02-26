@@ -1,5 +1,6 @@
 package com.ltc.products.dto;
 
+import com.ltc.products.models.Category;
 import lombok.*;
 
 @Data
@@ -13,5 +14,6 @@ public class ProductDTO {
     private String origin;
     private String manufacturingDate;
     private Integer price;
+    private Category category;
 
 }

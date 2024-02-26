@@ -4,6 +4,7 @@ import com.ltc.products.dto.CategoryDTO;
 import com.ltc.products.models.Category;
 import com.ltc.products.models.Product;
 import com.ltc.products.repository.CategoryRep;
+import com.ltc.products.repository.ProductRep;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRep categoryRep;
     private final ModelMapper modelMapper;
+    private final ProductRep productRep;
 
     public List<Category> getAll() {
         return categoryRep.findAll();

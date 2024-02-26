@@ -4,6 +4,7 @@ import com.ltc.products.dto.CategoryDTO;
 import com.ltc.products.dto.ProductDTO;
 import com.ltc.products.models.Category;
 import com.ltc.products.models.Product;
+import com.ltc.products.repository.CategoryRep;
 import com.ltc.products.repository.ProductRep;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,8 @@ import java.util.List;
 public class ProductService {
     private final ProductRep productRep;
     private final ModelMapper modelMapper;
+    private final CategoryRep categoryRep;
+
 
     public List<Product> getAll() {
         return productRep.findAll();
@@ -24,8 +27,10 @@ public class ProductService {
         return productRep.findById(id).orElseThrow();
     }
 
-    public void addProduct (ProductDTO newProduct){
+    public void addProduct (ProductDTO newProduct,Long id){
         Product product = modelMapper.map(newProduct, Product.class);
+        Category category = categoryRep.findById(id).orElseThrow();
+        product.setCategory(category);
         productRep.save(product);
     }
 

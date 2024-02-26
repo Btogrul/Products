@@ -28,9 +28,9 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    @PostMapping
-    public ResponseEntity<String> addProduct(@RequestBody ProductDTO newProduct) {
-        productService.addProduct(newProduct);
+    @PostMapping("{id}")
+    public ResponseEntity<String> addProduct(@RequestBody ProductDTO newProduct, @PathVariable Long id) {
+        productService.addProduct(newProduct,id);
         return ResponseEntity.ok("Product added successfully");
     }
 
