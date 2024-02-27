@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.h2database:h2:2.1.214'
 
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
 }
 
 tasks.named('test') {
