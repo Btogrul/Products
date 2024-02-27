@@ -10,7 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @ToString
-public class CategoryDTO {
+public class CategoryResponseDTO {
+    private Long id;
     private String name;
     private String description;
     private List<Product> products;

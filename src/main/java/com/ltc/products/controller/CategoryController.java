@@ -1,6 +1,7 @@
 package com.ltc.products.controller;
 
-import com.ltc.products.dto.CategoryDTO;
+import com.ltc.products.dto.CategoryRequestDto;
+import com.ltc.products.dto.CategoryResponseDTO;
 import com.ltc.products.models.Category;
 import com.ltc.products.models.Product;
 import com.ltc.products.service.CategoryService;
@@ -20,7 +21,7 @@ public class CategoryController {
     private final ModelMapper modelMapper;
 
     @GetMapping("/all")
-    public List<Category> getAllCategories() {
+    public List<CategoryResponseDTO> getAllCategories() {
         return categoryService.getAll();
     }
 
@@ -31,13 +32,13 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<String> addCategory(@RequestBody CategoryDTO newCategory) {
+    public ResponseEntity<String> addCategory(@RequestBody CategoryRequestDto newCategory) {
         categoryService.addCategory(newCategory);
         return ResponseEntity.ok("Category added successfully");
     }
 
     @PutMapping
-    public void updateCategory(@RequestParam Long id, @RequestBody CategoryDTO updatedCategory) {
+    public void updateCategory(@RequestParam Long id, @RequestBody CategoryResponseDTO updatedCategory) {
         categoryService.update(id, updatedCategory);
     }
 

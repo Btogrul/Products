@@ -1,6 +1,7 @@
 package com.ltc.products.controller;
 
-import com.ltc.products.dto.ProductDTO;
+import com.ltc.products.dto.ProductRequestDto;
+import com.ltc.products.dto.ProductResponseDto;
 import com.ltc.products.models.Product;
 import com.ltc.products.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class ProductController {
     private final ModelMapper modelMapper;
 
     @GetMapping("/all")
-    public List<Product> getAllProducts() {
+    public List<ProductResponseDto> getAllProducts() {
         return productService.getAll();
     }
 
@@ -29,13 +30,13 @@ public class ProductController {
     }
 
     @PostMapping("{id}")
-    public ResponseEntity<String> addProduct(@RequestBody ProductDTO newProduct, @PathVariable Long id) {
-        productService.addProduct(newProduct,id);
+    public ResponseEntity<String> addProduct(@RequestBody ProductRequestDto newProduct) {
+        productService.addProduct(newProduct);
         return ResponseEntity.ok("Product added successfully");
     }
 
     @PutMapping("/{id}")
-    public void updateProduct(@PathVariable Long id, @RequestBody ProductDTO updatedProduct) {
+    public void updateProduct(@PathVariable Long id, @RequestBody ProductRequestDto updatedProduct) {
         productService.update(id, updatedProduct);
     }
 
