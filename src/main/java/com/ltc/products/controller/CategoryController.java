@@ -5,6 +5,7 @@ import com.ltc.products.dto.CategoryResponseDTO;
 import com.ltc.products.models.Category;
 import com.ltc.products.models.Product;
 import com.ltc.products.service.CategoryService;
+import com.ltc.products.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,10 @@ import java.util.List;
 public class CategoryController {
     private final CategoryService categoryService;
     private final ModelMapper modelMapper;
-
+    private final EmailService email;
     @GetMapping("/all")
     public List<CategoryResponseDTO> getAllCategories() {
+        email.sendEmail();
         return categoryService.getAll();
     }
 
