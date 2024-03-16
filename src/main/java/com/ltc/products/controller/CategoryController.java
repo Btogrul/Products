@@ -1,7 +1,6 @@
 package com.ltc.products.controller;
 
-import com.ltc.products.dto.CategoryRequestDto;
-import com.ltc.products.dto.CategoryResponseDTO;
+import com.ltc.products.dto.*;
 import com.ltc.products.models.Category;
 import com.ltc.products.models.Product;
 import com.ltc.products.service.CategoryService;
@@ -12,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,6 +21,22 @@ public class CategoryController {
     private final CategoryService categoryService;
     private final ModelMapper modelMapper;
     private final EmailService email;
+    @GetMapping("cars-obj")
+    public ArrayList<CopartCarDTO> getCopartCarsAll(){
+        return categoryService.getCarsAll();
+    }
+    @GetMapping("hello")
+    public String categoryHello(){
+       return categoryService.getLaunches();
+    }
+
+    @GetMapping("obj")
+    public ArrayList<LaunchDTO> getLaunch(){
+        return categoryService.getLaunchesObj();
+    }
+
+
+
     @GetMapping("/all")
     public List<CategoryResponseDTO> getAllCategories() {
         email.sendEmail();

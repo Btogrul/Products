@@ -33,6 +33,7 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '3.2.3'
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.1.0'
 }
 
 tasks.named('test') {

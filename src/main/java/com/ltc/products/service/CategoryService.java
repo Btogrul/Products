@@ -1,7 +1,8 @@
 package com.ltc.products.service;
 
-import com.ltc.products.dto.CategoryRequestDto;
-import com.ltc.products.dto.CategoryResponseDTO;
+import com.ltc.products.config.feign.CopartApiClient;
+import com.ltc.products.config.feign.RocketClient;
+import com.ltc.products.dto.*;
 import com.ltc.products.models.Category;
 import com.ltc.products.models.Product;
 import com.ltc.products.repository.CategoryRep;
@@ -23,6 +24,19 @@ public class CategoryService {
     private final CategoryRep categoryRep;
     private final ModelMapper modelMapper;
     private final ProductRep productRep;
+    private final RocketClient rocketClient;
+    private final CopartApiClient copartApiClient;
+
+    public ArrayList<CopartCarDTO> getCarsAll(){
+       return copartApiClient.getCars().data;
+    }
+    public String getLaunches(){
+        return rocketClient.getLaunches();
+    }
+
+    public ArrayList<LaunchDTO> getLaunchesObj(){
+        return rocketClient.getObjLaunch();
+    }
 
     public List<CategoryResponseDTO> getAll() {
         ArrayList<Category> all = categoryRep.findAll();
