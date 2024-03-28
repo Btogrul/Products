@@ -1,10 +1,10 @@
 package com.ltc.products.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class ProductRequestDto {
     private String name;
     private Integer count;
@@ -12,4 +12,6 @@ public class ProductRequestDto {
     private String manufacturingDate;
     private Integer price;
     private Long categoryId;
+
+
 }

@@ -24,8 +24,11 @@ public class Product {
     private String manufacturingDate;
     private Integer price;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    @JsonIgnore
-    private Category category;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "category_id")
+//    @JsonIgnore
+//    private Category category;
+
+
+    //teste gore kommente almishdim
 }

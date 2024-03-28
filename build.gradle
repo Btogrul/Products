@@ -36,6 +36,11 @@ dependencies {
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.1.0'
     implementation group: 'org.jsoup', name: 'jsoup', version: '1.14.1'
 
+
+    testImplementation group: 'junit', name: 'junit', version: '4.5'
+    implementation 'junit:junit:4.12'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
 }
 
 tasks.named('test') {

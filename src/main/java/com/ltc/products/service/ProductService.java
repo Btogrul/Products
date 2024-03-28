@@ -30,7 +30,7 @@ public class ProductService {
         List<Product> all = productRep.findAll();
 
         List<ProductResponseDto> responseList = all.stream()
-                .map(this::mapToProductResponseDtoo) // Assuming you have a method to map Product to ProductResponseDto
+                .map(this::mapToProductResponseDtoo)
                 .collect(Collectors.toList());
 
         return responseList;
@@ -49,13 +49,14 @@ public class ProductService {
 
     }
 
-    public void addProduct (ProductRequestDto newProduct){
-        log.info(" add products method starts ");
+    public String addProduct (ProductRequestDto newProduct){
+        //log.info(" add products method starts ");
         Product product = modelMapper.map(newProduct, Product.class);
-        Category category = categoryRep.findById(newProduct.getCategoryId()).orElseThrow();
-        product.setCategory(category);
+       // Category category = categoryRep.findById(newProduct.getCategoryId()).orElseThrow();
+//        product.setCategory(category);
         productRep.save(product);
-        log.info(" add products method end ");
+        return "Successful";
+        //log.info(" add products method end ");
     }
 
     public void delete(Long id){
