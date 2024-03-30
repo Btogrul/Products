@@ -41,7 +41,7 @@ public class CategoryService {
     public List<CategoryResponseDTO> getAll() {
         ArrayList<Category> all = categoryRep.findAll();
         List<CategoryResponseDTO> responseList = all.stream()
-                .map(this::mapToProductResponseDto) // Assuming you have a method to map Product to ProductResponseDto
+                .map(this::mapToProductResponseDto)
                 .collect(Collectors.toList());
 
         return responseList;
@@ -55,9 +55,10 @@ public class CategoryService {
         return categoryRep.findById(id).orElseThrow();
     }
 
-    public void addCategory(CategoryRequestDto newCat) {
+    public String addCategory(CategoryRequestDto newCat) {
         Category category = modelMapper.map(newCat, Category.class);
         categoryRep.save(category);
+        return "Successful";
     }
 
     public void delete(Long id) {

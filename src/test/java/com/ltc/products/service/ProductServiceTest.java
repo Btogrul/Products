@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
@@ -19,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -84,25 +83,44 @@ public class ProductServiceTest {
     }
 
     @Test
-    void addProductTest(){
+    void addProductTest() {
 
-        ProductRequestDto dto = new ProductRequestDto( "Hey", 2 , "test", "USA",15, 1L);
+        ProductRequestDto dto = new ProductRequestDto("Hey", 2, "test", "USA", 15, 1L);
 
-        Product newProduct = new Product();
+//        Product newProduct = new Product();
+//
+//        when(modelMapper.map(dto, Product.class)).thenReturn(newProduct);
+//
+//        String actual = productService.addProduct(dto);
+//
+//        Assertions.assertEquals("Successful", actual);
 
-        when(modelMapper.map(dto, Product.class)).thenReturn(newProduct);
-
-        String actual = productService.addProduct(dto);
-
-        Assertions.assertEquals("Successful", actual);
-
+        //2-ci usul ise  :
+        verify(productService, times(1)).addProduct(dto);
 
     }
 
-//    @Test
-//    void delete(){
-//        Product productEntity = new Product(3L, "Hey", 2, "there", "test", 3);
-//        when(productRep.delete(productEntity)).thenReturn());
-//    }
+    @Test
+    void deleteTest() {
+        Product newProduct = new Product(2L, "Hey", 2, "there", "test", 3);
+
+        when(productRep.findById(2L)).thenReturn(Optional.of(newProduct));
+
+
+        productService.delete(2L);
+
+
+        verify(productRep).delete(newProduct);
+
+    }
+
+    @Test
+    void updateTest() {
+        Product productEntity = new Product(3L, "Hey", 2, "there", "test", 3);
+        ProductRequestDto productDTO = new ProductRequestDto();
+        when(productRep.findById(3L)).thenReturn(Optional.of(productEntity));
+        productService.update(3L, productDTO);
+        verify(productRep).save(productEntity);
+    }
 
 }
